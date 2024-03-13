@@ -1,0 +1,26 @@
+{% extends "tasks/layout.html" %} 
+<!-- The boilerplate of the this html file is extended from layout.html -->
+{% block body %}
+    <h1>Add Task</h1>
+    <form action="{% url 'tasks:add' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <!-- Client-side validation is triggered -->
+        <input type="submit"> 
+    </form>
+    <a href="{% url 'tasks:index' %}">View Tasks</a>
+    <!-- Be aware of the namespace collision, there is a similar filename
+        To fix this go to the url.py and create 'app_name = "tasks"'  -->
+{% endblock %}
+
+
+<!-- A CSRF (Cross-Site Request Forgery) will display. It is a security vulnerability
+     That is  inherent in some forms if they're not designed in a secure way, meaning
+     that someone could forge a request to a particular website using some form on their
+     own separate website.
+    
+     To deal with these sort of attacks is to add into our form a hidden CSRF token
+    
+     There is a default CSRF validation, it is done via a specific add-on  known as 
+     Django Middleware - refers to the ability in Django to be able to intervene in
+     the request response  processing of a Django Request -->

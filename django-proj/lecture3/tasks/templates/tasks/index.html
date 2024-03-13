@@ -1,0 +1,24 @@
+{% extends "tasks/layout.html" %}
+
+{% block body %}
+    <h1>Tasks</h1>
+    <ul>
+        {% for task in tasks %}
+            <li>{{ task }}</li>
+        {% empty %}
+            <li>No tasks.</li>
+        {% endfor %}
+    </ul>
+    <!-- 
+        <a href="/tasks/add">Add a New Task</a>
+        the /tasks/add is not good design because it is very easy to change the structure of the pages in
+        in terms of how the URLs all relate to each other. (It is a hectic job to change every link in every page ) -->
+
+    <a href="{% url 'tasks:add' %}">Add a New Task</a>
+    <!-- This will fetch from URL.py file -->
+{% endblock %}
+
+<!-- template inheritance, from the folder of layout? Layout folder will provide an inheritance 
+     to all of the structure of the page that is the same on both of the pages.
+
+     Write  what is differs between the pages. index and add html file -->
